@@ -1,4 +1,5 @@
 <?php
+use dektrium\user\controllers\SecurityController;
 
 $params = require(__DIR__ . '/params.php');
 
@@ -17,6 +18,24 @@ $config = [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@dektrium/user/views' => '@app/views/user'
+                ],
+            ],
+        ],
+        'authClientCollection' => [
+            'class' => yii\authclient\Collection::className(),
+            'clients' => [
+                'facebook' => [ //valid for http://local.toster
+                    'class'        => 'dektrium\user\clients\Facebook',
+                    'clientId'     => '1345447725465366',
+                    'clientSecret' => '1995aad35d168e4c9ea7a5971cbb8a51',
+                ],
+            ],
+        ],
+
         [
             'class' => 'yii\swiftmailer\Mailer',
             'viewPath' => '@app/mailer',
@@ -56,11 +75,30 @@ $config = [
             'enableUnconfirmedLogin' => true,
             'confirmWithin' => 21600,
             'cost' => 12,
-            'admins' => ['admin']
+            'admins' => ['admin'],
+
         ],
     ],
     'params' => $params,
 ];
+//
+//Event::on(SecurityController::class, SecurityController::EVENT_AFTER_AUTHENTICATE, function (AuthEvent $e) {
+//    // if user account was not created we should not continue
+//    if ($e->account->user === null) {
+//        return;
+//    }
+//
+//    // we are using switch here, because all networks provide different sets of data
+//    switch ($e->client->getName()) {
+//        case 'facebook':
+//            $e->account->user->profile->updateAttributes([
+//                'name' => $e->client->getUserAttributes()['name'],
+//            ]);
+//    }
+//
+//    // after saving all user attributes will be stored under account model
+//    // Yii::$app->identity->user->accounts['facebook']->decodedData
+//});
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
