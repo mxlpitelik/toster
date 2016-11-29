@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Order;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -81,6 +82,26 @@ class SiteController extends Controller
         return $this->render('login', [
             'model' => $model,
         ]);
+    }
+
+
+    /**
+     * Give money and stuff
+     *
+     * @return string|\yii\web\Response
+     */
+    public function actionMoney()
+    {
+        if (Yii::$app->user->isGuest) {
+            return $this->goHome();
+        }
+
+        $model = new Order();
+        $model->setUserId(Yii::$app->user->identity->id);
+        $model->setPaymentStatus(Order::ORDER_PREPARED);
+        $model->save();
+
+        return $this->render('money', ['model' => $model]);
     }
 
     /**

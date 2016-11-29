@@ -42,6 +42,11 @@ AppAsset::register($this);
 
     } else {
 
+        array_push($navItems,['label' => 'Gimme money 1 UAH',
+                'url' => ['/site/money'],
+                'linkOptions' => ['data-method' => 'post']]
+        );
+
         array_push($navItems,['label' => 'Profile',
                 'url' => ['/user/settings/profile'],
                 'linkOptions' => ['data-method' => 'post']]

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "301b51183d0402dcd23d28c623a7390d",
-    "content-hash": "426ea03a693f43a3543f3a79a73f214b",
+    "hash": "99fc7fc8cbbf6170fac4d616598a424a",
+    "content-hash": "1dfde1c464c49402507c73924d77d290",
     "packages": [
         {
             "name": "bower-asset/bootstrap",
@@ -358,6 +358,54 @@
             "time": "2016-07-16 12:58:58"
         },
         {
+            "name": "pistol88/yii2-liqpay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/pistol88/yii2-liqpay.git",
+                "reference": "9bee6055039350d238f714074d33e3063a8d68b4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/pistol88/yii2-liqpay/zipball/9bee6055039350d238f714074d33e3063a8d68b4",
+                "reference": "9bee6055039350d238f714074d33e3063a8d68b4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "voskobovich/yii2-liqpay": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "pistol88\\liqpay\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Ilya Pistol",
+                    "email": "pistol88@gmail.com"
+                }
+            ],
+            "description": "Payment widget for liqpay.com",
+            "homepage": "https://github.com/pistol88/yii2-liqpay",
+            "keywords": [
+                "application",
+                "liqpay",
+                "module",
+                "payment",
+                "pistol88",
+                "yii 2",
+                "yii2"
+            ],
+            "time": "2016-07-21 06:12:35"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v5.4.4",
             "source": {
@@ -409,6 +457,53 @@
                 "mailer"
             ],
             "time": "2016-11-24 01:01:23"
+        },
+        {
+            "name": "voskobovich/yii2-liqpay",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/voskobovich/yii2-liqpay.git",
+                "reference": "3ee62a8b853d72646aa5c4684ab86926a9e3c633"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/voskobovich/yii2-liqpay/zipball/3ee62a8b853d72646aa5c4684ab86926a9e3c633",
+                "reference": "3ee62a8b853d72646aa5c4684ab86926a9e3c633",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-toolkit",
+            "autoload": {
+                "psr-4": {
+                    "voskobovich\\liqpay\\": "",
+                    "voskobovich\\liqpay\\actions\\": "actions",
+                    "voskobovich\\liqpay\\forms\\": "forms",
+                    "voskobovich\\liqpay\\widgets\\": "widgets"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaly Voskobovich",
+                    "email": "vitaly@voskobovich.com",
+                    "homepage": "http://voskobovich.com"
+                }
+            ],
+            "description": "The toolkit of integration LiqPay service in your project for Yii2",
+            "homepage": "https://github.com/voskobovich/yii2-liqpay",
+            "keywords": [
+                "e-commerce",
+                "liqpay",
+                "yii2"
+            ],
+            "time": "2016-05-24 15:39:04"
         },
         {
             "name": "yiisoft/yii2",
@@ -3140,7 +3235,7 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": {
         "dektrium/yii2-user": 20
     },

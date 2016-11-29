@@ -21,10 +21,11 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views' => '@app/views/user'
+                    '@dektrium/user/views/admin' => '@app/views/user/admin'
                 ],
             ],
         ],
+        'orderModel' => ['class' => 'pistol88\order\models\Order'],
         'authClientCollection' => [
             'class' => yii\authclient\Collection::className(),
             'clients' => [
@@ -78,38 +79,34 @@ $config = [
             'admins' => ['admin'],
 
         ],
+        'liqpay' => [
+            'class' => 'pistol88\liqpay\Module',
+            'public_key' => 'i84249917192',
+            'private_key' => 'nHn6zBC6xgRQX9PIcUySH37xZDpuscc6R4pjgZ4v',
+            'currency' => 'UAH',
+            'pay_way' => null,
+            'version' => 3,
+            'sandbox' => false,
+            'language' => 'ru',
+            'result_url' => '/page/thanks',
+            'paymentName' => 'Order Payment',
+        ],
     ],
     'params' => $params,
 ];
-//
-//Event::on(SecurityController::class, SecurityController::EVENT_AFTER_AUTHENTICATE, function (AuthEvent $e) {
-//    // if user account was not created we should not continue
-//    if ($e->account->user === null) {
-//        return;
-//    }
-//
-//    // we are using switch here, because all networks provide different sets of data
-//    switch ($e->client->getName()) {
-//        case 'facebook':
-//            $e->account->user->profile->updateAttributes([
-//                'name' => $e->client->getUserAttributes()['name'],
-//            ]);
-//    }
-//
-//    // after saving all user attributes will be stored under account model
-//    // Yii::$app->identity->user->accounts['facebook']->decodedData
-//});
 
 if (YII_ENV_DEV) {
     // configuration adjustments for 'dev' environment
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
+        'allowedIPs' =>['*']
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
+        'allowedIPs' =>['*']
     ];
 }
 
