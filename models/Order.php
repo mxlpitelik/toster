@@ -49,6 +49,9 @@ class Order extends \yii\db\ActiveRecord
         return $this;
     }
 
+    public static function getUserOrderCountForStatus($status,$userId){
+        return Order::find()->where(['user_id' => $userId,'status'=>$status])->count();
+    }
 
     /**
      * @inheritdoc

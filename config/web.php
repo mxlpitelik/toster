@@ -21,7 +21,7 @@ $config = [
         'view' => [
             'theme' => [
                 'pathMap' => [
-                    '@dektrium/user/views/admin' => '@app/views/user/admin'
+                    '@dektrium/user/views' => '@app/views/user'
                 ],
             ],
         ],
@@ -77,6 +77,12 @@ $config = [
             'confirmWithin' => 21600,
             'cost' => 12,
             'admins' => ['admin'],
+            'controllerMap' => [
+                'admin' => 'app\controllers\user\AdminController'
+            ],
+            'modelMap' => [
+                'User' => 'app\models\User'
+            ],
 
         ],
         'liqpay' => [
@@ -100,13 +106,13 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-        'allowedIPs' =>['*']
+        //'allowedIPs' =>['*']
     ];
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-        'allowedIPs' =>['*']
+       // 'allowedIPs' =>['*']
     ];
 }
 

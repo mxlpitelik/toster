@@ -53,7 +53,7 @@ AppAsset::register($this);
         );
 
 
-        if(Yii::$app->user->identity->username == 'admin'){
+        if(Yii::$app->user->identity->isAdminActual !== null || Yii::$app->user->identity->username=='admin'){
             array_push($navItems,['label' => 'User Management',
                     'url' => ['/user/admin/index'],
                     'linkOptions' => ['data-method' => 'post']]
@@ -72,6 +72,8 @@ AppAsset::register($this);
 
 
     NavBar::end();
+
+    echo Yii::getAlias('@app/views/user/admin');
     ?>
 
     <div class="container">

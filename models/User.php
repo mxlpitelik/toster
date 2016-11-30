@@ -2,69 +2,31 @@
 
 namespace app\models;
 
-use Yii;
+use dektrium\user\models\User as BaseUser;
 
-/**
- * This is the model class for table "User".
- *
- * @property integer $id
- * @property string $username
- * @property string $email
- * @property string $password_hash
- * @property string $auth_key
- * @property integer $confirmed_at
- * @property string $unconfirmed_email
- * @property integer $blocked_at
- * @property string $registration_ip
- * @property integer $created_at
- * @property integer $updated_at
- * @property integer $flags
- */
-class User extends \yii\db\ActiveRecord
+class User extends BaseUser
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
+
+    public function getIsAdmin()
     {
-        return 'User';
+        return
+            (\Yii::$app->getAuthManager() && $this->module->adminPermission ?
+                \Yii::$app->user->can($this->module->adminPermission) : false)
+            || in_array($this->username, $this->module->admins)
+            || $this->isAdminActual !== null;
+   }
+
+    public function setAdmin()
+    {
+        return (bool)$this->updateAttributes(['isAdminActual' => 1]);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
+
+    public function removeAdmin()
     {
-        return [
-            [['username', 'email', 'password_hash', 'auth_key', 'created_at', 'updated_at'], 'required'],
-            [['confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags'], 'integer'],
-            [['username', 'email', 'unconfirmed_email'], 'string', 'max' => 255],
-            [['password_hash'], 'string', 'max' => 60],
-            [['auth_key'], 'string', 'max' => 32],
-            [['registration_ip'], 'string', 'max' => 45],
-            [['email'], 'unique'],
-            [['username'], 'unique'],
-        ];
+
+        return (bool)$this->updateAttributes(['isAdminActual' => null]);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'username' => 'Username',
-            'email' => 'Email',
-            'password_hash' => 'Password Hash',
-            'auth_key' => 'Auth Key',
-            'confirmed_at' => 'Confirmed At',
-            'unconfirmed_email' => 'Unconfirmed Email',
-            'blocked_at' => 'Blocked At',
-            'registration_ip' => 'Registration Ip',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
-            'flags' => 'Flags',
-        ];
-    }
+
 }
